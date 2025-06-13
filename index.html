@@ -1,1 +1,123 @@
-# Kaas.git.io
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kaasroof met Geryon 🧀</title>
+  <style>
+    body {
+      background-color: #fff8dc;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #5a3e1b;
+      text-align: center;
+      padding: 0 20px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #d4af37;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    p {
+      font-size: 1.3em;
+      max-width: 650px;
+      margin: 0 0 50px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 2;
+    }
+    button {
+      background-color: #fcd34d;
+      border: none;
+      padding: 25px 60px;
+      font-size: 2em;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+      position: relative;
+      z-index: 2;
+      font-weight: bold;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Kaasjes waterval container */
+    .cheese-fall {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+    }
+    .cheese {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Cheese.jpg/80px-Cheese.jpg');
+      background-size: cover;
+      opacity: 0.8;
+      border-radius: 10px;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(220px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cheese-fall" id="cheese-fall"></div>
+
+  <h1>Kaasroof met Geryon 🧀</h1>
+  <p>
+    Jij bent <strong>Geryon</strong>, de meesterlijke kaasrover.<br>
+    Je missie: de grootste kaasfabriek ooit overvallen.<br>
+    <strong>Luna Whitmore</strong> is een slimme fabrieksmedewerker die je soms aanwijzingen geeft.<br>
+    Los puzzels op, omzeil de beveiliging en steel alle kaas voordat de bewakers terugkomen.<br>
+    Kun jij de klus klaren?
+  </p>
+  <button onclick="startGame()">Start de overval</button>
+
+  <script>
+    function startGame() {
+      // Link naar de eerste puzzelpagina (pas aan indien nodig)
+      window.location.href = "room1.html";
+    }
+
+    const cheeseFall = document.getElementById('cheese-fall');
+
+    for(let i = 0; i < 10; i++) {
+      const cheese = document.createElement('div');
+      cheese.classList.add('cheese');
+      cheese.style.left = Math.random() * window.innerWidth + 'px';
+      cheese.style.animationDuration = (3 + Math.random() * 3) + 's';
+      cheese.style.animationDelay = (Math.random() * 5) + 's';
+      cheeseFall.appendChild(cheese);
+    }
+  </script>
+</body>
+</html>
