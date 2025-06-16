@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kamer 1 - Kaasroof met Geryon</title>
+  <style>
+    body {
+      background-color: #fff8dc;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #5a3e1b;
+      text-align: center;
+      padding: 0 20px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.3em;
+      max-width: 650px;
+      margin: 0 0 50px;
+      line-height: 1.5;
+    }
+    .color-box {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      border: 5px solid #5a3e1b;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #5a3e1b;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #fcd34d;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Kamer 1: De Kleurcode</h1>
+  <p>
+    Je staat voor een deur die vergrendeld is met een kleurcode.<br>
+    Kijk goed naar de kleur in de box hieronder en onthoud deze.<br>
+    Voer de kleur in om de deur te openen.
+  </p>
+  
+  <div class="color-box" id="colorBox"></div> <!-- Kleur zonder naam -->
+  
+  <input type="text" id="colorInput" placeholder="Voer de kleur in" />
+  <button onclick="checkColor()">Controleer Kleur</button>
+  <p id="message"></p>
+  <button id="nextColorButton" style="display: none;" onclick="nextColor()">Volgende Kleur</button>
+
+  <script>
+    const colors = ["red", "green", "blue"]; // Lijst van eenvoudige kleuren
+    let currentColorIndex = 0; // Huidige kleur index
+
+    // Functie om de kleur in de box in te stellen
+    function setColor() {
+      const colorBox = document.getElementById('colorBox');
+      colorBox.style.backgroundColor = colors[currentColorIndex]; // Kleur instellen
+      colorBox.textContent = ""; // Verberg de tekst in de box
+    }
+
+    function checkColor() {
+      const input = document.getElementById('colorInput').value.toLowerCase();
+      const message = document.getElementById('message');
+      
+      if (input === colors[currentColorIndex]) {
+        message.textContent = "Correct! Ga naar de volgende kleur.";
+        document.getElementById('nextColorButton').style.display = "block"; // Toon de knop voor de volgende kleur
+      } else {
+        message.textContent = "Onjuist! Probeer het opnieuw.";
+      }
+    }
+
+    function nextColor() {
+      currentColorIndex++;
+      if (currentColorIndex < colors.length) {
+        setColor(); // Stel de volgende kleur in
+        document.getElementById('colorInput').value = ""; // Maak het invoerveld leeg
+        document.getElementById('message').textContent = ""; // Maak het bericht leeg
+        document.getElementById('nextColorButton').style.display = "none"; // Verberg de knop
+      } else {
+        document.getElementById('message').textContent = "Gefeliciteerd! Je hebt alle kleuren goed!";
+        document.getElementById('nextColorButton').style.display = "none"; // Verberg de knop
+        // Hier kun je de speler naar de volgende kamer sturen of een andere actie uitvoeren
+      }
+    }
+
+    // Stel de eerste kleur in bij het laden van de pagina
+    window.onload = function() {
+      setColor(); // Stel de eerste kleur in
+    };
+  </script>
+</body>
+</html>
