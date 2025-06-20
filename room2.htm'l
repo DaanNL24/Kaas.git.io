@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kamer 2 - Wiskundepuzzel</title>
+  <style>
+    body {
+      background-color: #fff9c4; /* Lichtgele achtergrond */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #8d6e63; /* Donkerder kleur voor tekst */
+      text-align: center;
+      padding: 0 20px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #fbc02d; /* Gele kleur voor de titel */
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.3em;
+      max-width: 650px;
+      margin: 0 0 50px;
+      line-height: 1.5;
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #8d6e63; /* Donkerder kleur voor de rand */
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #fdd835; /* Felgele kleur voor de knop */
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background-color: #fbc02d; /* Donkerder geel bij hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Kamer 2: Wiskundepuzzel</h1>
+  <p>
+    Om de deur te openen, moet je de volgende som oplossen:<br>
+    Wat is (5 * 3) + (6 / 2)?
+  </p>
+  
+  <input type="text" id="answerInput" placeholder="Voer je antwoord in" />
+  <button onclick="checkAnswer()">Controleer Antwoord</button>
+  <p id="message"></p>
+
+  <script>
+    const correctAnswer = 15; // Correct antwoord op de som
+
+    function checkAnswer() {
+      const userAnswer = parseInt(document.getElementById('answerInput').value);
+      const message = document.getElementById('message');
+      
+      if (userAnswer === correctAnswer) {
+        message.textContent = "Correct! De deur is geopend.";
+        // Hier kun je de speler naar de volgende kamer sturen
+        setTimeout(() => {
+          window.location.href = "https://daannl24.github.io/Kaas.git.io/room3.html"; // Volgende kamer
+        }, 2000); // Wacht 2 seconden voordat je naar de volgende pagina gaat
+      } else {
+        message.textContent = "Onjuist! Probeer het opnieuw.";
+      }
+    }
+  </script>
+</body>
+</html>
