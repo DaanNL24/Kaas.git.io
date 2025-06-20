@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kamer 3 - Raad het Getal</title>
+  <style>
+    body {
+      background-color: #fff9c4; /* Lichtgele achtergrond */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #8d6e63; /* Donkerder kleur voor tekst */
+      text-align: center;
+      padding: 0 20px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #fbc02d; /* Gele kleur voor de titel */
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.3em;
+      max-width: 650px;
+      margin: 0 0 50px;
+      line-height: 1.5;
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #8d6e63; /* Donkerder kleur voor de rand */
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #fdd835; /* Felgele kleur voor de knop */
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background-color: #fbc02d; /* Donkerder geel bij hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Kamer 3: Raad het Getal</h1>
+  <p>
+    Ik heb een getal gekozen tussen 1 en 100.<br>
+    Probeer het getal te raden!
+  </p>
+  
+  <input type="number" id="guessInput" placeholder="Voer je gok in" min="1" max="100" />
+  <button onclick="checkGuess()">Controleer Gok</button>
+  <p id="message"></p>
+  <p id="attempts"></p>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1; // Genereer een willekeurig getal tussen 1 en 100
+    let attempts = 0; // Aantal pogingen
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById('guessInput').value);
+      const message = document.getElementById('message');
+      attempts++;
+
+      if (userGuess < 1 || userGuess > 100) {
+        message.textContent = "Voer een getal in tussen 1 en 100.";
+      } else if (userGuess === randomNumber) {
+        message.textContent = `Gefeliciteerd! Je hebt het getal ${randomNumber} geraden in ${attempts} pogingen.`;
+        document.getElementById('attempts').textContent = ""; // Verberg pogingen
+        // Hier kun je de speler naar de volgende kamer sturen
+        setTimeout(() => {
+          window.location.href = "https://daannl24.github.io/Kaas.git.io/room4.html"; // Volgende kamer
+        }, 2000); // Wacht 2 seconden voordat je naar de volgende pagina gaat
+      } else if (userGuess < randomNumber) {
+        message.textContent = "Te laag! Probeer het opnieuw.";
+      } else {
+        message.textContent = "Te hoog! Probeer het opnieuw.";
+      }
+
+      document.getElementById('attempts').textContent = `Aantal pogingen: ${attempts}`; // Toon aantal pogingen
+    }
+  </script>
+</body>
+</html>
